@@ -1,1 +1,17 @@
+$info: #456990;
+$white: #fff;
+$dark: #5fc5e7;
+$blue: #e46e6e;
+$green: #63eba7;
+$red: #df6969;
+
 @import '~bootstrap/scss/bootstrap';
+
+.navbar {
+  font-weight: bold;
+}
+
+.sign-in {
+  font-weight: bold;
+}
+
