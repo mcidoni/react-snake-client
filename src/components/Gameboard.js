@@ -1,9 +1,11 @@
-// import React from 'react'
+import React from 'react'
 
-// const GameBoard = () => {
-//   return(
-//     <div className="gameboard"></div>
-//   )
-// }
+const Gameboard = () => {
+  return (
+    <div className="gameboard">
+      <h1>gameboard goes here</h1>
+    </div>
+  )
+}
 
-// export default Gameboard
+export default Gameboard

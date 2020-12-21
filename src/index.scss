@@ -7,19 +7,22 @@ $red: #df6969;
 
 @import '~bootstrap/scss/bootstrap';
 
+body {
+  background-color: #b7e0ff;
+}
 .navbar {
   font-weight: bold;
 }
 
-.sign-in {
+.sign-in, .sign-up {
   font-weight: bold;
 }
 
-.gameboard {
-  background-color: lightgrey;
-  height: 300px;
-  width: 300px;
-  display: grid;
-  grid-template-rows: repeat(20,1fr);
-  grid-template-columns: repeat(20, 1fr);
-}
+// .gameboard {
+//   background-color: lightgrey;
+//   height: 300px;
+//   width: 300px;
+//   display: grid;
+//   grid-template-rows: repeat(20,1fr);
+//   grid-template-columns: repeat(20, 1fr);
+// }
