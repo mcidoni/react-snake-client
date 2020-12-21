@@ -1,11 +1,9 @@
 import React from 'react'
-import TailwindCSS from 'tailwindcss'
+import Link from 'react-router-dom'
 
 const GameBoard = () => {
   return(
-    <div className="gameboard" display="flex">
-      
-    </div>
+    <div className="gameboard"></div>
   )
 }
 

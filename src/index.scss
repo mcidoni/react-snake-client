@@ -15,3 +15,11 @@ $red: #df6969;
   font-weight: bold;
 }
 
+.gameboard {
+  background-color: lightgrey;
+  height: 300px;
+  width: 300px;
+  display: grid;
+  grid-template-rows: repeat(20,1fr);
+  grid-template-columns: repeat(20, 1fr);
+}
