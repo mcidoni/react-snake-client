@@ -1,10 +1,9 @@
-import React from 'react'
-import Link from 'react-router-dom'
+// import React from 'react'
 
-const GameBoard = () => {
-  return(
-    <div className="gameboard"></div>
-  )
-}
+// const GameBoard = () => {
+//   return(
+//     <div className="gameboard"></div>
+//   )
+// }
 
-export default Gameboard
+// export default Gameboard
