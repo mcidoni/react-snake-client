@@ -14,15 +14,46 @@ body {
   font-weight: bold;
 }
 
-.sign-in, .sign-up {
+.sign-in, .sign-up, .scores {
   font-weight: bold;
 }
 
-// .gameboard {
-//   background-color: lightgrey;
-//   height: 300px;
-//   width: 300px;
-//   display: grid;
-//   grid-template-rows: repeat(20,1fr);
-//   grid-template-columns: repeat(20, 1fr);
-// }
+.gameboard {
+  background-color: white;
+  height: 550px;
+  width: 550px;
+  margin: 50px auto;
+  display: grid;
+  grid-template-rows: repeat(20,1fr);
+  grid-template-columns: repeat(20, 1fr);
+  border: 2px solid #4fb5ff;
+  border-radius: 5px;;
+}
+
+.view-score {
+  display: grid;
+  margin: 50px auto;
+  padding: 20px;
+  height: 550px;
+  width: 550px;
+  border: 2px solid #4fb5ff;
+  border-radius: 5px;
+  background-color: lightpink;
+}
+
+.scores {
+  display: flex;
+  justify-self: center;
+  padding: 0px;
+}
+
+.snake {
+  display: grid;
+  align-content: center;
+  margin: 0 auto;
+  background: palegreen;
+  height: 25px;
+  width: 25px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
