@@ -53,7 +53,18 @@ body {
   margin: 0 auto;
   background: palegreen;
   height: 25px;
-  width: 25px;
+  width: 75px;
   border: 2px solid black;
   border-radius: 5px;
+}
+
+.food {
+  display: grid;
+  align-content: right;
+  background: plum;
+  border: 2px solid black;
+  border-radius: 5px;
+  height: 25px;
+  width: 25px;
+
 }
