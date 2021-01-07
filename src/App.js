@@ -10,7 +10,9 @@ import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 import Gameboard from './components/Gameboard'
-import ViewScore from './components/ViewScore'
+// import ViewScore from './components/ViewScore'
+import Score from './components/Score'
+import Example from './components/Example'
 
 class App extends Component {
   constructor () {
@@ -70,8 +72,15 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/' render={() => (
             <Gameboard />
           )} />
-          <AuthenticatedRoute user={user} exact path='/scores' render={() => (
+          {/* <AuthenticatedRoute user={user} exact path='/scores' render={() => (
             <ViewScore />
+          )} /> */}
+          <AuthenticatedRoute user={user} exact path='/scores' render={() => (
+            <Score msgAlert={this.msgAlert} user={user} />
+          )} />
+
+          <AuthenticatedRoute user={user} exact path='/examples' render={() => (
+            <Example msgAlert={this.msgAlert} user={user} history={history} />
           )} />
         </main>
       </Fragment>

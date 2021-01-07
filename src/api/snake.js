@@ -1,7 +1,7 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
-export const createGame = (form, user) => {
+export const createScore = (form) => {
   return axios({
     method: 'POST',
     url: apiUrl + '/scores',
@@ -11,22 +11,6 @@ export const createGame = (form, user) => {
     data: {
       score: {
         score: form.score
-      }
-    }
-  })
-}
-
-export const stripePurchase = (purchaseProduct, productPrice, user) => {
-  return axios({
-    method: 'POST',
-    url: apiUrl + '/purchases',
-    headers: {
-      'Authorization': `Token token=${user.token}`
-    },
-    data: {
-      purchase: {
-        purchaseProduct: purchaseProduct,
-        productPrice: productPrice
       }
     }
   })

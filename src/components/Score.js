@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { createScore } from '../api/snake'
-// import messages from '../AutoDismissAlert/messages'
+import messages from './AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-// import MakeScore from './Score'
 
 class CreateScore extends Component {
   constructor () {
@@ -24,22 +23,22 @@ class CreateScore extends Component {
   onCreateScore = event => {
     event.preventDefault()
 
-    const { user } = this.props
+    const { msgAlert, user } = this.props
 
     createScore(this.state, user)
-      // .then(() => msgAlert({
-      //   heading: 'Create Purchase Success',
-      //   message: messages.createGameSuccess,
-      //   variant: 'success'
-      // }))
+      .then(() => msgAlert({
+        heading: 'Create Score Success',
+        message: messages.createScoreSuccess,
+        variant: 'success'
+      }))
+      // .then(() => history.push('/index-scores'))
       .catch(error => {
         this.setState({ score: '' })
-        console.log(error)
-        // msgAlert({
-        // heading: 'Purchase Creation Failed with error: ' + error.message,
-        // message: messages.signUpFailure,
-        // variant: 'danger'
-        // })
+        msgAlert({
+          heading: 'Score Creation Failed with error: ' + error.message,
+          message: messages.createScoreFailure,
+          variant: 'danger'
+        })
       })
   }
 
@@ -51,16 +50,28 @@ class CreateScore extends Component {
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <h3>Create Score</h3>
           <Form onSubmit={this.onCreateScore}>
-            <Form.Group>
+            <Form.Group controlId="score">
               <Form.Label>Score</Form.Label>
               <Form.Control
                 required
+                type="text"
                 name="score"
                 value={score}
-                type="number"
+                placeholder="score"
                 onChange={this.handleChange}
               />
             </Form.Group>
+            {/* <Form.Group controlId="score">
+              <Form.Label>Product Price</Form.Label>
+              <Form.Control
+                required
+                name="score"
+                value={productPrice}
+                type="number"
+                placeholder="score"
+                onChange={this.handleChange}
+              />
+            </Form.Group> */}
             <Button
               variant="primary"
               type="submit"
@@ -68,12 +79,6 @@ class CreateScore extends Component {
               Submit
             </Button>
           </Form>
-          <div>
-            <div className="gameboard">
-              <div className="snake"></div>
-              <div className="food"></div>
-            </div>
-          </div>
         </div>
       </div>
     )
@@ -81,12 +86,3 @@ class CreateScore extends Component {
 }
 
 export default withRouter(CreateScore)
-
-// import React from 'react'
-// // import { Form, Button } from 'react-bootstrap/Form'
-
-// // // const addScore = (props) => {
-// // //   const score = [useState(0)],
-
-// // // }
-// export default Gameboard

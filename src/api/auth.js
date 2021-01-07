@@ -53,3 +53,20 @@ export const changePassword = (passwords, user) => {
     }
   })
 }
+
+export const createExample = (form, user) => {
+  console.log('hello', form)
+  return axios({
+    url: apiUrl + '/examples',
+    method: 'POST',
+    headers: {
+      'Authorization': `Token token=${user.token}`
+    },
+    data: {
+      examples: {
+        text: form.text,
+        title: form.title
+      }
+    }
+  })
+}
