@@ -4,9 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { createScore } from '../api/snake'
 // import messages from '../AutoDismissAlert/messages'
 
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-// import MakeScore from './Score'
+import MakeScore from './Score'
 
 class CreateScore extends Component {
   constructor () {
@@ -44,13 +42,14 @@ class CreateScore extends Component {
   }
 
   render () {
-    const { score } = this.state
+    const { user } = this.state
 
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <h3>Create Score</h3>
-          <Form onSubmit={this.onCreateScore}>
+          <MakeScore user={user}/>
+          {/* <Form onSubmit={this.onCreateScore}>
             <Form.Group>
               <Form.Label>Score</Form.Label>
               <Form.Control
@@ -67,7 +66,7 @@ class CreateScore extends Component {
             >
               Submit
             </Button>
-          </Form>
+          </Form> */}
           <div>
             <div className="gameboard">
               <div className="snake"></div>

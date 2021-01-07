@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { createScore } from '../api/snake'
-import messages from './AutoDismissAlert/messages'
+// import messages from './AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -23,22 +23,23 @@ class CreateScore extends Component {
   onCreateScore = event => {
     event.preventDefault()
 
-    const { msgAlert, user } = this.props
+    const { user } = this.props
 
     createScore(this.state, user)
-      .then(() => msgAlert({
-        heading: 'Create Score Success',
-        message: messages.createScoreSuccess,
-        variant: 'success'
-      }))
+      // .then(() => msgAlert({
+      //   heading: 'Create Score Success',
+      //   message: messages.createScoreSuccess,
+      //   variant: 'success'
+      // }))
       // .then(() => history.push('/index-scores'))
       .catch(error => {
         this.setState({ score: '' })
-        msgAlert({
-          heading: 'Score Creation Failed with error: ' + error.message,
-          message: messages.createScoreFailure,
-          variant: 'danger'
-        })
+        console.log(error)
+        // msgAlert({
+        //   heading: 'Score Creation Failed with error: ' + error.message,
+        //   message: messages.createScoreFailure,
+        //   variant: 'danger'
+        // })
       })
   }
 

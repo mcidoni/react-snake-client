@@ -76,7 +76,7 @@ class App extends Component {
             <ViewScore />
           )} /> */}
           <AuthenticatedRoute user={user} exact path='/scores' render={() => (
-            <Score msgAlert={this.msgAlert} user={user} />
+            <Score user={user} />
           )} />
 
           <AuthenticatedRoute user={user} exact path='/examples' render={() => (
