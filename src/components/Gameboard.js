@@ -47,7 +47,7 @@ class CreateScore extends Component {
     return (
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>Create Score</h3>
+          {/* <h3>Create Score</h3> */}
           <MakeScore user={user}/>
           {/* <Form onSubmit={this.onCreateScore}>
             <Form.Group>
