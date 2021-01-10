@@ -43,8 +43,10 @@ V2:
 ## Wireframes
 
 [Imgur](https://i.imgur.com/48XnSF3.png)
+
 [Imgur](https://i.imgur.com/4pvh0VV.png)
-![App Screenshot] (https://i.imgur.com/yZhm7CK.png)
+
+![App Screenshot]
 
 
 ## Important Links
