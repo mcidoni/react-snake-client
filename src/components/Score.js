@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { createScore } from '../api/snake'
+import { createScore, getScores, deleteScore, updateScore } from '../api/snake'
 // import messages from './AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
@@ -12,8 +12,27 @@ class CreateScore extends Component {
     super()
 
     this.state = {
-      score: ''
+      score: '',
+
+      /*
+        Each score object in this array looks like the following:
+        {
+          createdAt: '...',
+          score: 1,
+          updatedAt: '...',
+          _id: '34983475'
+        }
+      */
+      allScores: []
     }
+  }
+
+  componentWillMount () {
+    // Fetch all scrores form the database.
+    getScores()
+      .then(({ data }) => {
+        this.setState({ allScores: data.scores })
+      })
   }
 
   handleChange = event => this.setState({
@@ -26,15 +45,24 @@ class CreateScore extends Component {
     const { user } = this.props
 
     createScore(this.state, user)
+      // Run stuff after successfully creating a score.
+      .then(res => {
+        this.setState(oldState => {
+          return {
+            score: '',
+            allScores: [...oldState.allScores, res.data.score]
+          }
+        })
+      })
       // .then(() => msgAlert({
       //   heading: 'Create Score Success',
       //   message: messages.createScoreSuccess,
       //   variant: 'success'
       // }))
       // .then(() => history.push('/index-scores'))
-      .catch(error => {
+      .catch((error) => {
+        console.log('ERROR:', error)
         this.setState({ score: '' })
-        console.log(error)
         // msgAlert({
         //   heading: 'Score Creation Failed with error: ' + error.message,
         //   message: messages.createScoreFailure,
@@ -43,11 +71,22 @@ class CreateScore extends Component {
       })
   }
 
+  componentDidUpdate () {
+    console.log('STATE:', this.state)
+  }
+
   render () {
     const { score } = this.state
 
     return (
       <div className="row">
+        <div className="col-sm-10 col-md-8 mx-auto mt-5">
+          <h3>All Scores</h3>
+          {this.state.allScores.map(obj => {
+            return <SingleScore key={obj._id} scoreObj={obj} />
+          })}
+        </div>
+
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <h3>Create Score</h3>
           <Form onSubmit={this.onCreateScore}>
@@ -84,6 +123,19 @@ class CreateScore extends Component {
       </div>
     )
   }
+}
+
+function SingleScore ({ scoreObj }) {
+  const { _id, score } = scoreObj
+  const [value, setValue] = useState(score)
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
+      <input type="text" style={{ marginRight: '8px' }} value={value} onChange={e => setValue(e.target.value)} />
+      <button onClick={() => updateScore(_id, value)} className="btn btn-secondary" style={{ marginRight: '8px' }}>Update</button>
+      <button onClick={() => deleteScore(_id)} className="btn btn-secondary">&times;</button>
+    </div>
+  )
 }
 
 export default withRouter(CreateScore)

@@ -16,6 +16,32 @@ export const createScore = (form) => {
   })
 }
 
+export const getScores = () => {
+  return axios({
+    method: 'GET',
+    url: `${apiUrl}/scores`
+  })
+}
+
+export const deleteScore = id => {
+  return axios({
+    method: 'DELETE',
+    url: `${apiUrl}/scores/${id}`
+  })
+}
+
+export const updateScore = (id, newScore) => {
+  return axios({
+    method: 'PATCH',
+    url: `${apiUrl}/scores/${id}`,
+    data: {
+      score: {
+        score: newScore
+      }
+    }
+  })
+}
+
 export const indexPurchases = user => {
   return axios({
     url: apiUrl + '/purchases',
