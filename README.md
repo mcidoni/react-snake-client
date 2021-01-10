@@ -46,7 +46,7 @@ V2:
 
 [Imgur](https://i.imgur.com/4pvh0VV.png)
 
-![App Screenshot]
+![App Screenshot](https://i.imgur.com/yZhm7CK.png)
 
 
 ## Important Links
