@@ -55,7 +55,6 @@ export const changePassword = (passwords, user) => {
 }
 
 export const createExample = (form, user) => {
-  console.log('hello', form)
   return axios({
     url: apiUrl + '/examples',
     method: 'POST',

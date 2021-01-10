@@ -6,6 +6,7 @@ import { createScore, getScores, deleteScore, updateScore } from '../api/snake'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import AutoDismissAlert from './AutoDismissAlert/AutoDismissAlert'
 
 class CreateScore extends Component {
   constructor () {
@@ -60,8 +61,7 @@ class CreateScore extends Component {
       //   variant: 'success'
       // }))
       // .then(() => history.push('/index-scores'))
-      .catch((error) => {
-        console.log('ERROR:', error)
+      .catch(() => {
         this.setState({ score: '' })
         // msgAlert({
         //   heading: 'Score Creation Failed with error: ' + error.message,
@@ -71,8 +71,14 @@ class CreateScore extends Component {
       })
   }
 
-  componentDidUpdate () {
-    console.log('STATE:', this.state)
+  removeScore = id => {
+    this.setState(oldState => {
+      return {
+        allScores: oldState.allScores.filter(obj => {
+          return obj._id !== id
+        })
+      }
+    })
   }
 
   render () {
@@ -83,7 +89,13 @@ class CreateScore extends Component {
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           <h3>All Scores</h3>
           {this.state.allScores.map(obj => {
-            return <SingleScore key={obj._id} scoreObj={obj} />
+            return (
+              <SingleScore
+                key={obj._id}
+                scoreObj={obj}
+                removeScore={this.removeScore}
+              />
+            )
           })}
         </div>
 
@@ -94,24 +106,13 @@ class CreateScore extends Component {
               <Form.Label>Score</Form.Label>
               <Form.Control
                 required
-                type="text"
+                type="number"
                 name="score"
                 value={score}
                 placeholder="score"
                 onChange={this.handleChange}
               />
             </Form.Group>
-            {/* <Form.Group controlId="score">
-              <Form.Label>Product Price</Form.Label>
-              <Form.Control
-                required
-                name="score"
-                value={productPrice}
-                type="number"
-                placeholder="score"
-                onChange={this.handleChange}
-              />
-            </Form.Group> */}
             <Button
               variant="primary"
               type="submit"
@@ -125,15 +126,37 @@ class CreateScore extends Component {
   }
 }
 
-function SingleScore ({ scoreObj }) {
+function SingleScore ({ scoreObj, removeScore }) {
   const { _id, score } = scoreObj
+  const [showUpdateSuccess, setShowUpdateSuccess] = useState(false)
   const [value, setValue] = useState(score)
+  const _removeScore = () => {
+    deleteScore(_id) // Deletes the score from the database.
+      .then(() => {
+        removeScore(_id) // Removes the score from the UI.
+      })
+  }
+  const changeScore = () => {
+    updateScore(_id, value)
+      .then(() => {
+        setShowUpdateSuccess(true)
+      })
+  }
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
       <input type="text" style={{ marginRight: '8px' }} value={value} onChange={e => setValue(e.target.value)} />
-      <button onClick={() => updateScore(_id, value)} className="btn btn-secondary" style={{ marginRight: '8px' }}>Update</button>
-      <button onClick={() => deleteScore(_id)} className="btn btn-secondary">&times;</button>
+      <button onClick={changeScore} className="btn btn-secondary" style={{ marginRight: '8px' }}>Update</button>
+      <button onClick={_removeScore} className="btn btn-secondary">&times;</button>
+      {showUpdateSuccess && (
+        <AutoDismissAlert
+          heading="Successful update!"
+          variant="success"
+          message={`Successfully updated value to ${value}`}
+          id={_id}
+          deleteAlert={() => setShowUpdateSuccess(false)}
+        />
+      )}
     </div>
   )
 }

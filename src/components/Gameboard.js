@@ -4,9 +4,9 @@ import { withRouter } from 'react-router-dom'
 import { createScore } from '../api/snake'
 // import messages from '../AutoDismissAlert/messages'
 
-import MakeScore from './Score'
+import Score from './Score'
 
-class CreateScore extends Component {
+class GameBoard extends Component {
   constructor () {
     super()
 
@@ -30,9 +30,8 @@ class CreateScore extends Component {
       //   message: messages.createGameSuccess,
       //   variant: 'success'
       // }))
-      .catch(error => {
+      .catch(() => {
         this.setState({ score: '' })
-        console.log(error)
         // msgAlert({
         // heading: 'Purchase Creation Failed with error: ' + error.message,
         // message: messages.signUpFailure,
@@ -48,25 +47,7 @@ class CreateScore extends Component {
       <div className="row">
         <div className="col-sm-10 col-md-8 mx-auto mt-5">
           {/* <h3>Create Score</h3> */}
-          <MakeScore user={user}/>
-          {/* <Form onSubmit={this.onCreateScore}>
-            <Form.Group>
-              <Form.Label>Score</Form.Label>
-              <Form.Control
-                required
-                name="score"
-                value={score}
-                type="number"
-                onChange={this.handleChange}
-              />
-            </Form.Group>
-            <Button
-              variant="primary"
-              type="submit"
-            >
-              Submit
-            </Button>
-          </Form> */}
+          <Score user={user}/>
           <div>
             <div className="gameboard">
               <div className="snake"></div>
@@ -79,13 +60,4 @@ class CreateScore extends Component {
   }
 }
 
-export default withRouter(CreateScore)
-
-// import React from 'react'
-// // import { Form, Button } from 'react-bootstrap/Form'
-
-// // // const addScore = (props) => {
-// // //   const score = [useState(0)],
-
-// // // }
-// export default Gameboard
+export default withRouter(GameBoard)
