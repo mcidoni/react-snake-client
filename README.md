@@ -6,8 +6,8 @@ Welcome to Snek.js! This is my take on the classic snake game that was populariz
 
 V1 (MVP): 
 - Sign up and/or sign in
-- As the snake's "food" appears on the board, click to add to the user score
-- Once game is over, user can check their score by clicking the "Scores" tab at the top-right of the screen
+- Type a number into the score field and hit submit
+- To update/delete score, simply click on the score field and updated it, or click the "x" to delete it
 
 ## Technologies Used
 
@@ -42,4 +42,15 @@ V2:
 
 ## Wireframes
 
+[Imgur](https://i.imgur.com/48XnSF3.png)
+[Imgur](https://i.imgur.com/4pvh0VV.png)
+
 ## Important Links
+
+Client Repo: https://github.com/mcidoni/react-snake-client
+
+API Repo: https://github.com/mcidoni/react-snake-api
+
+Client Deployed: https://mcidoni.github.io/react-snake-client/#/
+
+Heroku Server: https://limitless-reaches-61732.herokuapp.com
